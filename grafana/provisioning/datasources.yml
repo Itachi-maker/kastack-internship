@@ -1,0 +1,20 @@
+# This file configures the Postgres datasource for Grafana.
+# It uses environment variables passed into the Grafana container
+# from the docker-compose.yml file.
+
+apiVersion: 1
+
+datasources:
+  - name: Olist Postgres
+    type: postgres
+    url: ${PG_HOST}:${PG_PORT}
+    user: ${PG_USER}
+    database: ${PG_DB}
+    isDefault: true
+    editable: false
+    secureJsonData:
+      password: ${PG_PASSWORD}
+    jsonData:
+      sslmode: 'disable' # Use 'require' if Postgres is configured for SSL
+      postgresVersion: 14 # Matches our Docker image
+      timescaledb: false

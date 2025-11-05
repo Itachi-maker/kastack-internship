@@ -1,0 +1,15 @@
+# This file tells Grafana to load any .json files
+# from the /var/lib/grafana/dashboards directory,
+# which we map in the docker-compose.yml file.
+
+apiVersion: 1
+
+providers:
+  - name: 'default'
+    orgId: 1
+    folder: ''
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
