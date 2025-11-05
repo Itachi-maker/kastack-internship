@@ -1,0 +1,29 @@
+###
+### A Prefect 2.0 Deployment Configuration
+###
+### To apply this deployment:
+### $ prefect deployment apply src/prefect/deployment.yml
+###
+### To run an agent to pick up scheduled runs:
+### $ prefect agent start -q 'default'
+###
+
+name: olist-etl-deployment
+flow_name: Olist ETL Flow
+entrypoint: src/prefect/flow.py:etl_flow
+
+# Defines the 'how' for this flow
+work_queue_name: default
+
+# Defines the 'when'
+schedule:
+  # Run every hour
+  interval: 3600
+  # Start immediately on first 'apply'
+  anchor_date: null
+  timezone: "UTC"
+
+tags:
+  - etl
+  - olist
+  - production
